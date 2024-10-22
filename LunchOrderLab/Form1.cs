@@ -155,18 +155,35 @@ namespace LunchOrderLab
                 }
             }
 
-            // Displaying sub total price
+            // Displaying subtotal price, tax price, and the order total
+            subTotalCalculation(foodPrice, addOnPrice);
+            taxCalculation(subTotal);
+            orderTotalCalculation(subTotal, taxPrice);
+        }
+
+        // Subtotal price calculation
+        public double subTotalCalculation(double foodPrice, double addOnPrice)
+        {
             subTotal = foodPrice + addOnPrice;
             txtBoxSubtotal.Text = "$" + subTotal.ToString("F2");
+            return subTotal;
+        }
 
-            // Displaying the tax price
+        // Tax price calculation
+        public double taxCalculation(double subTotal)
+        {
             taxPrice = subTotal * tax;
             txtBoxTax.Text = "$" + taxPrice.ToString("F2");
+            return taxPrice;
+        }
 
-            // Displaying order total price
+        // Order total price calculation
+        public double orderTotalCalculation(double subTotal, double taxPrice)
+        {
             orderTotal = subTotal + taxPrice;
-            txtBoxOrderTotal.BackColor = Color.Yellow;
             txtBoxOrderTotal.Text = "$" + orderTotal.ToString("F2");
+            txtBoxOrderTotal.BackColor = Color.Gold;
+            return orderTotal;
         }
 
         // Reverting back to default through the use of the reset button
